@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref, reactive } from 'vue'
 import TodoItem from '~/components/TodoItem.vue'
+import { AppButton, AppInput } from '../components/AppComponents'
 
 type Todo = {
   id: number
@@ -13,6 +14,8 @@ const todoList = reactive<Todo[]>([
 ])
 const newTodoTitle = ref<string>('')
 const addTodo = (title: string) => {
+  if (title.length === 0) return
+
   todoList.push({
     id: todoList.length + 1,
     title,
@@ -30,15 +33,16 @@ const updateTodo = (todo: Todo) => {
   <div class="flex flex-col items-center">
     <h1>Task</h1>
 
-    <div class="flex flex-col p-5 w-100 items-start">
+    <div class="flex flex-col p-5 w-100 items-start justify-end">
+      <div class="flex mb-4 gap-4 items-end">
+        <AppButton label="Add" @click="addTodo(newTodoTitle)" />
+
+        <AppInput label="New task" v-model:value="newTodoTitle" />
+      </div>
+
       <template v-for="todo in todoList" :key="todo.id">
         <TodoItem :todo="todo" @update="updateTodo" />
       </template>
-
-      <div>
-        <input v-model="newTodoTitle" type="text" />
-        <button @click="addTodo(newTodoTitle)">Add</button>
-      </div>
     </div>
   </div>
 </template>

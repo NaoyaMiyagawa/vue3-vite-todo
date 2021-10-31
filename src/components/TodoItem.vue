@@ -19,16 +19,16 @@ const emit = defineEmits<{
 }>()
 
 function onUpdateTitle(event: Event) {
-  if (event.target instanceof HTMLInputElement) {
-    const { value } = event.target
-    emit('update', { ...props.todo, title: value })
-  }
+  if (!(event.target instanceof HTMLInputElement)) return
+
+  const { value } = event.target
+  emit('update', { ...props.todo, title: value })
 }
 function onUpdateIsDone(event: Event) {
-  if (event.target instanceof HTMLInputElement) {
-    const { checked } = event.target
-    emit('update', { ...props.todo, isDone: checked })
-  }
+  if (!(event.target instanceof HTMLInputElement)) return
+
+  const { checked } = event.target
+  emit('update', { ...props.todo, isDone: checked })
 }
 </script>
 
