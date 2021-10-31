@@ -3,7 +3,9 @@ const props = defineProps({
   value: { type: String, default: '' },
   label: { type: String, default: '' },
 })
-const emit = defineEmits(['update:value'])
+const emit = defineEmits<{
+  (event: 'update:value', value: string):void
+}>()
 
 function onUpdate(event: Event) {
   if (!(event.target instanceof HTMLInputElement)) return

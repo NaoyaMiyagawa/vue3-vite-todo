@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { PropType } from '@vue/runtime-core'
-import AppCheckbox from '~/components/AppCheckbox.vue'
+import { AppCheckbox, AppInput } from '../components/AppComponents'
 
 type Todo = {
   id: number
@@ -36,7 +36,7 @@ function onUpdateIsDone(event: Event) {
   <div class="flex border-b-dark-50 p-2 gap-2 align-middle">
     <AppCheckbox :id="String(todo.id)" :is-done="todo.isDone" @change="onUpdateIsDone" />
 
-    <input type="text" :value="todo.title" :class="{ 'line-through': todo.isDone }" @input="onUpdateTitle" />
+    <AppInput v-model:value="todo.title" :class="{ 'text-gray-400': todo.isDone }" @update:title="onUpdateTitle" />
   </div>
 </template>
 
