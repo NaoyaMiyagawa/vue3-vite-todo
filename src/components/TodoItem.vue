@@ -24,18 +24,19 @@ function onUpdateTitle(event: Event) {
     emit('update', { ...props.todo, title: value })
   }
 }
+function onUpdateIsDone(event: Event) {
+  if (event.target instanceof HTMLInputElement) {
+    const { checked } = event.target
+    emit('update', { ...props.todo, isDone: checked })
+  }
+}
 </script>
 
 <template>
   <div class="flex border-b-dark-50 p-2 gap-2 align-middle">
-    <AppCheckbox :id="String(todo.id)" :is-done="todo.isDone" />
+    <AppCheckbox :id="String(todo.id)" :is-done="todo.isDone" @change="onUpdateIsDone" />
 
-    <input
-      type="text"
-      :value="todo.title"
-      :class="{ 'line-through': todo.isDone }"
-      @input="onUpdateTitle"
-    />
+    <input type="text" :value="todo.title" :class="{ 'line-through': todo.isDone }" @input="onUpdateTitle" />
   </div>
 </template>
 
