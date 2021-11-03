@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { PropType } from '@vue/runtime-core'
-import { AppCheckbox, AppInput } from '../components/AppComponents'
+import { AppCheckbox, AppInput } from '~/components/App'
 
 type Todo = {
   id: number

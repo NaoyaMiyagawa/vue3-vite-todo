@@ -6,6 +6,10 @@ const props = defineProps({
 const emit = defineEmits<{
   (event: 'change', value: boolean): void
 }>()
+
+function toggleChecked() {
+  emit('change', !props.checked)
+}
 </script>
 
 <template>
@@ -15,12 +19,15 @@ const emit = defineEmits<{
   >
     <input
       type="checkbox"
-      :id="id"
       class="hidden el_checkbox"
       :checked="checked"
       @change="$emit('change', ($event.target as HTMLInputElement).checked)"
     />
-    <label :for="id" class="cursor-pointer el_checkbox" :class="{ 'border-4 border-white': checked }"></label>
+    <label
+      class="cursor-pointer el_checkbox"
+      :class="{ 'border-4 border-white': checked }"
+      @click="toggleChecked"
+    ></label>
   </div>
 </template>
 

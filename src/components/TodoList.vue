@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, reactive } from 'vue'
 import TodoItem from '~/components/TodoItem.vue'
-import { AppButton, AppInput } from '../components/AppComponents'
+import { AppButton, AppInput } from '~/components/App'
 
 type Todo = {
   id: number
@@ -34,15 +34,21 @@ const updateTodo = (todo: Todo) => {
     <h1>Task</h1>
 
     <div class="flex flex-col p-5 w-100 items-start justify-end">
+      <template v-for="todo in todoList" :key="todo.id">
+        <TodoItem :todo="todo" @update="updateTodo" />
+      </template>
+
+      <div class="flex border-b-dark-50 p-2 gap-2 align-middle">
+        <button class="rounded-full m-auto bg-gray-400 h-6 text-white w-6">+</button>
+
+        <AppInput v-model="newTodoTitle" />
+      </div>
+      <!--
       <div class="flex mb-4 gap-4 items-end">
         <AppButton label="Add" @click="addTodo(newTodoTitle)" />
 
         <AppInput label="New task" v-model:value="newTodoTitle" />
-      </div>
-
-      <template v-for="todo in todoList" :key="todo.id">
-        <TodoItem :todo="todo" @update="updateTodo" />
-      </template>
+      </div> -->
     </div>
   </div>
 </template>
