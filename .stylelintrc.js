@@ -21,6 +21,11 @@ module.exports = {
       },
     ],
     'string-quotes': 'single',
+    // following PRECSS rules
+    // - 1st prefixes: ly,bl,el,hp,un,js,is + _
+    // - name prefix: _
+    // - modifier prefix: __
+    'selector-class-pattern': '^(ly|bl|el|hp|un|js|is)(_[a-z][a-zA-Z0-9]*){1,3}(__[a-z][a-zA-Z0-9]*)?$',
   },
   ignoreFiles: ['**/node_modules/**'],
 }
