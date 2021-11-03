@@ -25,7 +25,7 @@ const addTodo = (title: string) => {
 }
 const updateTodo = (todo: Todo) => {
   const index = todoList.findIndex((t) => t.id === todo.id)
-  todoList[index] = todo
+  todoList.splice(index, 1, todo)
 }
 </script>
 

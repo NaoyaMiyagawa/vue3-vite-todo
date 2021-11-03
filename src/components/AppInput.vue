@@ -1,27 +1,25 @@
 <script setup lang="ts">
 const props = defineProps({
-  value: { type: String, default: '' },
   label: { type: String, default: '' },
+  value: { type: String, default: '' },
 })
 const emit = defineEmits<{
-  (event: 'update:value', value: string):void
+  (event: 'input', value: string): void
 }>()
-
-function onUpdate(event: Event) {
-  if (!(event.target instanceof HTMLInputElement)) return
-
-  const { value } = event.target
-  emit('update:value', value)
-}
 </script>
 
 <template>
-  <div class="flex flex-col items-start">
+  <div class="flex flex-col items-start inline-block">
     <span class="text-sm text-gray-500">
       {{ label }}
     </span>
 
-    <input type="text" :value="value" class="border border-blue-300 p-1 px-2" @keyup="onUpdate" />
+    <input
+      type="text"
+      :value="value"
+      class="border-b border-gray-300 p-1 px-2"
+      @input="$emit('input', ($event.target as HTMLInputElement).value)"
+    />
   </div>
 </template>
 

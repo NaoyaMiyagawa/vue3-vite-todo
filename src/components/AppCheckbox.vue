@@ -1,18 +1,21 @@
 <script setup lang="ts">
-defineProps({
+const props = defineProps({
   id: { type: String, default: null },
-  isDone: { type: Boolean, default: false },
+  checked: { type: Boolean, default: false },
 })
-defineEmits([])
+const emit = defineEmits<{
+  (event: 'change', value: boolean): void
+}>()
 </script>
 
 <template>
-  <div class="flex items-center">
+  <div class="flex items-center inline-block">
     <input
       :id="id"
       type="checkbox"
       class="rounded bg-gray-50 border-gray-300 h-4 w-4 focus:ring-3 focus:ring-blue-300"
-      :checked="isDone"
+      :checked="checked"
+      @change="$emit('change', ($event.target as HTMLInputElement).checked)"
     />
   </div>
 </template>

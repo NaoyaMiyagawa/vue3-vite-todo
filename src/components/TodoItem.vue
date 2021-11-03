@@ -18,25 +18,19 @@ const emit = defineEmits<{
   (event: 'update', todo: Todo): void
 }>()
 
-function onUpdateTitle(event: Event) {
-  if (!(event.target instanceof HTMLInputElement)) return
-
-  const { value } = event.target
-  emit('update', { ...props.todo, title: value })
+function onUpdateTitle(newTitle: string): void {
+  emit('update', { ...props.todo, title: newTitle })
 }
-function onUpdateIsDone(event: Event) {
-  if (!(event.target instanceof HTMLInputElement)) return
-
-  const { checked } = event.target
-  emit('update', { ...props.todo, isDone: checked })
+function onUpdateChecked(newChecked: boolean): void {
+  emit('update', { ...props.todo, isDone: newChecked })
 }
 </script>
 
 <template>
   <div class="flex border-b-dark-50 p-2 gap-2 align-middle">
-    <AppCheckbox :id="String(todo.id)" :is-done="todo.isDone" @change="onUpdateIsDone" />
+    <AppCheckbox :id="String(todo.id)" :is-done="todo.isDone" @change="onUpdateChecked" />
 
-    <AppInput v-model:value="todo.title" :class="{ 'text-gray-400': todo.isDone }" @update:title="onUpdateTitle" />
+    <AppInput v-model:value="todo.title" :class="{ 'text-gray-400': todo.isDone }" @input="onUpdateTitle" />
   </div>
 </template>
 
