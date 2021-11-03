@@ -1,5 +1,5 @@
 module.exports = {
-  plugins: ['stylelint-scss'],
+  plugins: ['stylelint-scss', 'stylelint-order', 'stylelint-config-rational-order/plugin'],
   extends: [
     'stylelint-config-recommended',
     'stylelint-config-standard',
