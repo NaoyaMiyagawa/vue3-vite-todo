@@ -27,8 +27,8 @@ function onUpdateChecked(newChecked: boolean): void {
 </script>
 
 <template>
-  <div class="flex border-b-dark-50 p-2 gap-2 align-middle">
-    <AppCheckbox :id="String(todo.id)" :is-done="todo.isDone" @change="onUpdateChecked" />
+  <div class="flex border-b-dark-50 p-2 gap-2 items-center">
+    <AppCheckbox :id="String(todo.id)" :checked="todo.isDone" @change="onUpdateChecked" />
 
     <AppInput v-model:value="todo.title" :class="{ 'text-gray-400': todo.isDone }" @input="onUpdateTitle" />
   </div>

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const props = defineProps({
-  id: { type: String, default: null },
+  id: { type: String, default: null, required: true },
   checked: { type: Boolean, default: false },
 })
 const emit = defineEmits<{
@@ -9,15 +9,23 @@ const emit = defineEmits<{
 </script>
 
 <template>
-  <div class="flex items-center inline-block">
+  <div
+    class="border rounded-full border-1 h-6 w-6 inline-flex relative items-center align-middle"
+    :class="[!checked ? 'bg-white border-gray-300' : 'bg-purple-400 border-purple-600']"
+  >
     <input
-      :id="id"
       type="checkbox"
-      class="rounded bg-gray-50 border-gray-300 h-4 w-4 focus:ring-3 focus:ring-blue-300"
+      :id="id"
+      class="hidden el_checkbox"
       :checked="checked"
       @change="$emit('change', ($event.target as HTMLInputElement).checked)"
     />
+    <label :for="id" class="cursor-pointer el_checkbox" :class="{ 'border-4 border-white': checked }"></label>
   </div>
 </template>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.el_checkbox {
+  @apply rounded-full h-full w-full;
+}
+</style>

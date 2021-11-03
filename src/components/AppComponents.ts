@@ -1,5 +1,5 @@
 import AppButton from '~/components/AppButton.vue'
-import AppInput from '~/components/AppInput.vue'
 import AppCheckbox from '~/components/AppCheckbox.vue'
+import AppInput from '~/components/AppInput.vue'
 
-export { AppButton, AppInput, AppCheckbox }
+export { AppButton, AppCheckbox, AppInput }
