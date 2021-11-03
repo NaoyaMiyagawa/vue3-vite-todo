@@ -18,6 +18,7 @@
   },
   "plugins": [],
   "rules": {
-    "prettier/prettier": [""]
+    "prettier/prettier": ["off"],
+    "@typescript-eslint/no-unused-vars": ["warn", { "varsIgnorePattern": "(props|emit)" }]
   }
 }
