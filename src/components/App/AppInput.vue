@@ -4,7 +4,7 @@ const props = defineProps({
   value: { type: String, default: '' },
 })
 const emit = defineEmits<{
-  (event: 'input', value: string): void
+  (event: 'update:value', value: string): void
 }>()
 </script>
 
@@ -18,7 +18,7 @@ const emit = defineEmits<{
       type="text"
       :value="value"
       class="border-b border-gray-300 p-1 px-2"
-      @input="$emit('input', ($event.target as HTMLInputElement).value)"
+      @input="$emit('update:value', ($event.target as HTMLInputElement).value)"
     />
   </div>
 </template>

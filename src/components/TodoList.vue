@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, reactive } from 'vue'
 import TodoItem from '~/components/TodoItem.vue'
-import { AppButton, AppInput } from '~/components/App'
+import { AppButtonCircle, AppInput } from '~/components/App'
 
 type Todo = {
   id: number
@@ -13,12 +13,12 @@ const todoList = reactive<Todo[]>([
   { id: 2, title: 'Learn Vuex', isDone: false },
 ])
 const newTodoTitle = ref<string>('')
-const addTodo = (title: string) => {
-  if (title.length === 0) return
+const addTodo = () => {
+  if (newTodoTitle.value.length === 0) return
 
   todoList.push({
     id: todoList.length + 1,
-    title,
+    title: newTodoTitle.value,
     isDone: false,
   })
   newTodoTitle.value = ''
@@ -39,16 +39,10 @@ const updateTodo = (todo: Todo) => {
       </template>
 
       <div class="flex border-b-dark-50 p-2 gap-2 align-middle">
-        <button class="rounded-full m-auto bg-gray-400 h-6 text-white w-6">+</button>
+        <AppButtonCircle label="+" :is-disabled="newTodoTitle.length === 0" @click="addTodo" class="m-auto" />
 
-        <AppInput v-model="newTodoTitle" />
+        <AppInput v-model:value="newTodoTitle" />
       </div>
-      <!--
-      <div class="flex mb-4 gap-4 items-end">
-        <AppButton label="Add" @click="addTodo(newTodoTitle)" />
-
-        <AppInput label="New task" v-model:value="newTodoTitle" />
-      </div> -->
     </div>
   </div>
 </template>

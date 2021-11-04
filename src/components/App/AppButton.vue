@@ -1,9 +1,6 @@
 <script setup lang="ts">
 defineProps({
-  label: {
-    type: String,
-    default: 'Button',
-  },
+  label: { type: String, default: 'Button' },
 })
 defineEmits([])
 </script>
