@@ -2,21 +2,17 @@
 import { ref, computed } from 'vue'
 import TodoItem from '~/components/TodoItem.vue'
 import { AppButtonCircle, AppInput } from '~/components/App'
-import { useTodoList } from '~/stores/todoList'
+import { useTodoStore } from '~/stores'
 
-type Todo = {
-  id: number
-  title: string
-  isDone: boolean
-}
-const store = useTodoList()
+const store = useTodoStore()
 const todoList = computed(() => store.todoList)
 const newTodoTitle = ref<string>('')
-const addTodo = () => {
+
+function addTodo() {
   store.addTodo(newTodoTitle.value)
   newTodoTitle.value = ''
 }
-const updateTodo = (todo: Todo) => {
+function updateTodo(todo: Todo) {
   store.updateTodo(todo)
 }
 </script>

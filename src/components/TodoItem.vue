@@ -18,7 +18,7 @@ const emit = defineEmits<{
   (event: 'update', todo: Todo): void
 }>()
 
-function onUpdateTitle(newTitle: string): void {
+function onUpdateTodoTitle(newTitle: string): void {
   emit('update', { ...props.todo, title: newTitle })
 }
 function onUpdateChecked(newChecked: boolean): void {
@@ -30,7 +30,11 @@ function onUpdateChecked(newChecked: boolean): void {
   <div class="flex border-b-dark-50 p-2 gap-2 items-center">
     <AppCheckbox :id="String(todo.id)" :checked="todo.isDone" @change="onUpdateChecked" />
 
-    <AppInput v-model:value="todo.title" :class="{ 'text-gray-400': todo.isDone }" @input="onUpdateTitle" />
+    <AppInput
+      :value="todo.title"
+      @input="onUpdateTodoTitle(($event.target as HTMLInputElement).value)"
+      :class="{ 'text-gray-400': todo.isDone }"
+    />
   </div>
 </template>
 
