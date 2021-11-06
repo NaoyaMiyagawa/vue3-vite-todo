@@ -1,10 +1,11 @@
 import { defineStore } from 'pinia'
-import { useStorage, RemoveableRef } from '@vueuse/core'
+import { Ref } from 'vue'
+import { useStorage } from '@vueuse/core'
 
 import type { Todo } from '~/@types'
 
 type TodoStore = {
-  todoList: RemoveableRef<Todo[]>
+  todoList: Ref<Todo[]>
 }
 
 export const useTodoStore = defineStore('main', {
