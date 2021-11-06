@@ -3,6 +3,7 @@ import { ref, computed } from 'vue'
 import TodoItem from '~/components/TodoItem.vue'
 import { AppButtonCircle, AppInput } from '~/components/App'
 import { useTodoStore } from '~/stores'
+import { Todo } from '~/@types'
 
 const store = useTodoStore()
 const todoList = computed(() => store.todoList)

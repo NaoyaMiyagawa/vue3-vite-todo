@@ -1,12 +1,7 @@
 <script setup lang="ts">
-import { PropType } from '@vue/runtime-core'
+import { PropType } from 'vue'
+import type { Todo } from '~/@types'
 import { AppCheckbox, AppInput } from '~/components/App'
-
-type Todo = {
-  id: number
-  title: string
-  isDone: boolean
-}
 
 const props = defineProps({
   todo: {
