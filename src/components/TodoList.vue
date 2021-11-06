@@ -1,31 +1,23 @@
 <script setup lang="ts">
-import { ref, reactive } from 'vue'
+import { ref, computed } from 'vue'
 import TodoItem from '~/components/TodoItem.vue'
 import { AppButtonCircle, AppInput } from '~/components/App'
+import { useTodoList } from '~/stores/todoList'
 
 type Todo = {
   id: number
   title: string
   isDone: boolean
 }
-const todoList = reactive<Todo[]>([
-  { id: 1, title: 'Learn Vue', isDone: false },
-  { id: 2, title: 'Learn Vuex', isDone: false },
-])
+const store = useTodoList()
+const todoList = computed(() => store.todoList)
 const newTodoTitle = ref<string>('')
 const addTodo = () => {
-  if (newTodoTitle.value.length === 0) return
-
-  todoList.push({
-    id: todoList.length + 1,
-    title: newTodoTitle.value,
-    isDone: false,
-  })
+  store.addTodo(newTodoTitle.value)
   newTodoTitle.value = ''
 }
 const updateTodo = (todo: Todo) => {
-  const index = todoList.findIndex((t) => t.id === todo.id)
-  todoList.splice(index, 1, todo)
+  store.updateTodo(todo)
 }
 </script>
 
