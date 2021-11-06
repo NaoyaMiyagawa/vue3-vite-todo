@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 import { Ref } from 'vue'
-import { useStorage } from '@vueuse/core'
+import { useLocalStorage } from '@vueuse/core'
 
 import type { Todo } from '~/@types'
 
@@ -11,7 +11,7 @@ type TodoStore = {
 export const useTodoStore = defineStore('main', {
   state: () => {
     return {
-      todoList: useStorage('todoList', []),
+      todoList: useLocalStorage('todoList', []),
     } as TodoStore
   },
 
@@ -34,6 +34,13 @@ export const useTodoStore = defineStore('main', {
     updateTodo(todo: Todo) {
       const index = this.todoList.findIndex((t) => t.id === todo.id)
       this.todoList.splice(index, 1, todo)
+    },
+    /**
+     * Delete todo
+     */
+    deleteTodo(id: number) {
+      const index = this.todoList.findIndex((t) => t.id === id)
+      this.todoList.splice(index, 1)
     },
   },
 })

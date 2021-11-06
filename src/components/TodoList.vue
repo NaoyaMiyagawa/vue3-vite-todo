@@ -16,6 +16,9 @@ function addTodo() {
 function updateTodo(todo: Todo) {
   store.updateTodo(todo)
 }
+function deleteTodo(todoId: number) {
+  store.deleteTodo(todoId)
+}
 </script>
 
 <template>
@@ -24,7 +27,7 @@ function updateTodo(todo: Todo) {
 
     <div class="flex flex-col p-5 w-100 items-start justify-end">
       <template v-for="todo in todoList" :key="todo.id">
-        <TodoItem :todo="todo" @update="updateTodo" />
+        <TodoItem :todo="todo" @update="updateTodo" @deleteTodo="deleteTodo" />
       </template>
 
       <div class="flex border-b-dark-50 p-2 gap-2 align-middle">
