@@ -5,7 +5,7 @@ import TodoItem from '~/components/TodoItem.vue'
 import TodoAddForm from '~/components/TodoAddForm.vue'
 
 const store = useTodoStore()
-const todoList = computed(() => store.todoList)
+const todoList = computed(() => store.getTodoList)
 </script>
 
 <template>
