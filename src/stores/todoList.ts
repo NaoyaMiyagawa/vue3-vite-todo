@@ -15,6 +15,17 @@ export const useTodoStore = defineStore('main', {
     } as TodoStore
   },
 
+  getters: {
+    getTodoList(): Todo[] {
+      return this.todoList
+    },
+
+    getNextId(): number {
+      const ids = this.todoList.map((todo) => todo.id)
+      return Math.max(...ids) + 1
+    },
+  },
+
   actions: {
     /**
      * Add new todo
@@ -22,11 +33,8 @@ export const useTodoStore = defineStore('main', {
     addTodo(title: string): void {
       if (title.length === 0) return
 
-      this.todoList.push({
-        id: this.todoList.length + 1,
-        title,
-        isDone: false,
-      })
+      const newTodo: Todo = { id: this.getNextId, title, isDone: false }
+      this.todoList.push(newTodo)
       toast.success('Todo added')
     },
     /**
