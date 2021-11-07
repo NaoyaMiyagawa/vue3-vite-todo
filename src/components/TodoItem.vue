@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { ref, PropType } from 'vue'
+import { PropType } from 'vue'
 import type { Todo } from '~/@types'
-import { AppCheckbox, AppInput } from '~/components/App'
+import { AppButton, AppCheckbox, AppInput } from '~/components/App'
 
 const props = defineProps({
   todo: {
@@ -14,9 +14,7 @@ const emit = defineEmits<{
   (event: 'deleteTodo', todoId: number): void
 }>()
 
-const isModalShown = ref(false)
-
-function onUpdateTodoTitle(newTitle: string): void {
+function onUpdateTitle(newTitle: string): void {
   emit('update', { ...props.todo, title: newTitle })
 }
 function onUpdateChecked(newChecked: boolean): void {
@@ -29,17 +27,9 @@ function confirmDelete(todoId: number): void {
 
 <template>
   <div class="flex border-b-dark-50 p-2 gap-2 items-center" @click.right.prevent="confirmDelete(todo.id)">
-    <AppCheckbox :id="String(todo.id)" :checked="todo.isDone" @change="onUpdateChecked" />
+    <AppCheckbox :checked="todo.isDone" @update:checked="onUpdateChecked" />
 
-    <AppInput
-      :value="todo.title"
-      @input="onUpdateTodoTitle(($event.target as HTMLInputElement).value)"
-      :class="{ 'text-gray-400': todo.isDone }"
-    />
-
-    <div class="p-2" v-if="isModalShown">
-      <p>hoge</p>
-    </div>
+    <AppInput :value="todo.title" @update:value="onUpdateTitle" :class="{ 'text-gray-400': todo.isDone }" />
   </div>
 </template>
 

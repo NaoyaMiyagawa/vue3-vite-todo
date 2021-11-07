@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { useVModel } from '@vueuse/core'
+
 const props = defineProps({
   label: { type: String, default: '' },
   value: { type: String, default: '' },
@@ -6,6 +8,12 @@ const props = defineProps({
 const emit = defineEmits<{
   (event: 'update:value', value: string): void
 }>()
+
+const value = useVModel(props, 'value', emit)
+
+function onInput($event: Event) {
+  value.value = ($event.target as HTMLInputElement).value
+}
 </script>
 
 <template>
@@ -14,12 +22,7 @@ const emit = defineEmits<{
       {{ label }}
     </span>
 
-    <input
-      type="text"
-      :value="value"
-      class="border-b border-gray-300 p-1 px-2"
-      @input="$emit('update:value', ($event.target as HTMLInputElement).value)"
-    />
+    <input type="text" :value="value" class="border-b border-gray-300 p-1 px-2" @input="onInput" />
   </div>
 </template>
 
