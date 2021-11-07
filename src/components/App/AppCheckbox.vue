@@ -17,7 +17,7 @@ function toggleChecked(): void {
 
 <template>
   <div
-    class="border rounded-full border-1 h-6 w-6 inline-flex relative items-center align-middle"
+    class="border rounded-full h-6 w-6 inline-flex relative items-center align-middle flex-none"
     :class="[!checked ? 'bg-white border-gray-300' : 'bg-purple-400 border-purple-600']"
   >
     <input type="checkbox" class="hidden el_checkbox" :checked="checked" />

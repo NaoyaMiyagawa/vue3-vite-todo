@@ -9,7 +9,7 @@ defineEmits([])
 <template>
   <button
     :disabled="isDisabled"
-    class="rounded-full h-6 text-white w-6"
+    class="rounded-full h-6 text-white w-6 flex-none"
     :class="[!isDisabled ? 'bg-gray-400' : 'bg-gray-200', { 'cursor-default': isDisabled }]"
   >
     {{ label }}

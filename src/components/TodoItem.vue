@@ -26,7 +26,7 @@ function confirmDelete(todoId: number): void {
 </script>
 
 <template>
-  <div class="flex border-b-dark-50 p-2 gap-2 items-center" @click.right.prevent="confirmDelete(todo.id)">
+  <div class="flex border-b-dark-50 p-2 gap-2 w-full items-center" @click.right.prevent="confirmDelete(todo.id)">
     <AppCheckbox :checked="todo.isDone" @update:checked="onUpdateChecked" />
 
     <AppInput :value="todo.title" @update:value="onUpdateTitle" :class="{ 'text-gray-400': todo.isDone }" />

@@ -17,12 +17,12 @@ function onInput($event: Event) {
 </script>
 
 <template>
-  <div class="flex flex-col items-start inline-block">
+  <div class="flex flex-col items-start inline-block w-full">
     <span class="text-sm text-gray-500">
       {{ label }}
     </span>
 
-    <input type="text" :value="value" class="border-b border-gray-300 p-1 px-2" @input="onInput" />
+    <input type="text" :value="value" class="w-full border-b border-gray-300 p-1 px-2" @input="onInput" />
   </div>
 </template>
 
