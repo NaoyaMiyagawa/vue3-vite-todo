@@ -1,3 +1,3 @@
-import type { Todo } from './Todo'
+import type { Todo, TodoMode } from './Todo'
 
-export type { Todo }
+export type { Todo, TodoMode }

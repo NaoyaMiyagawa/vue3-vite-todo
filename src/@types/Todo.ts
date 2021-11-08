@@ -3,3 +3,5 @@ export type Todo = {
   title: string
   isDone: boolean
 }
+
+export type TodoMode = 'ALL' | 'UNDONE' | 'DONE'
