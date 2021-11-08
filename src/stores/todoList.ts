@@ -2,7 +2,7 @@ import { defineStore } from 'pinia'
 import { Ref, unref } from 'vue'
 import { useLocalStorage, MaybeRef } from '@vueuse/core'
 import type { Todo, TodoMode } from '~/@types'
-import { toast } from '~/composables/toast'
+import { toast } from '~/composables'
 
 type TodoStore = {
   todoList: Ref<Todo[]>

@@ -1,9 +1,7 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
 import { useTodoStore } from '~/stores'
-import TodoItem from '~/components/TodoItem.vue'
-import TodoAddForm from '~/components/TodoAddForm.vue'
-import TodoModeTab from '~/components/TodoModeTab.vue'
+import { TodoModeTab, TodoItem, TodoAddForm } from '~/components/Todo'
 import { TodoMode } from '~/@types'
 
 const mode = ref<TodoMode>('UNDONE')
