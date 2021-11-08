@@ -4,18 +4,12 @@ import { useTodoStore } from '~/stores'
 import TodoItem from '~/components/TodoItem.vue'
 import TodoAddForm from '~/components/TodoAddForm.vue'
 import TodoModeTab from '~/components/TodoModeTab.vue'
-import { Todo, TodoMode } from '~/@types'
+import { TodoMode } from '~/@types'
 
 const mode = ref<TodoMode>('UNDONE')
 
 const store = useTodoStore()
-const todoList = computed(() =>
-  store.getTodoList.filter((todo: Todo) => {
-    if (mode.value === 'ALL') return true
-    if (mode.value === 'DONE' && todo.isDone) return true
-    if (mode.value === 'UNDONE' && !todo.isDone) return true
-  })
-)
+const todoList = computed(() => store.getTodoList(mode))
 </script>
 
 <template>

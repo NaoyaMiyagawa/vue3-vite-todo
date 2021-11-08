@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
-import { Ref } from 'vue'
-import { useLocalStorage } from '@vueuse/core'
-import type { Todo } from '~/@types'
+import { Ref, unref } from 'vue'
+import { useLocalStorage, MaybeRef } from '@vueuse/core'
+import type { Todo, TodoMode } from '~/@types'
 import { toast } from '~/composables/toast'
 
 type TodoStore = {
@@ -16,8 +16,15 @@ export const useTodoStore = defineStore('main', {
   },
 
   getters: {
-    getTodoList(): Todo[] {
-      return this.todoList
+    getTodoList: (state) => {
+      return (mode: MaybeRef<TodoMode>) => {
+        mode = unref(mode)
+        return state.todoList.filter((todo: Todo) => {
+          if (mode === 'ALL') return true
+          if (mode === 'DONE' && todo.isDone) return true
+          if (mode === 'UNDONE' && !todo.isDone) return true
+        })
+      }
     },
 
     getNextId(): number {

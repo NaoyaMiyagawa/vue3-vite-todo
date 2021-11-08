@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useVModel } from '@vueuse/core'
+import { useVModels } from '@vueuse/core'
 
 const props = defineProps({
   checked: { type: Boolean, default: false },
@@ -8,7 +8,7 @@ const emit = defineEmits<{
   (event: 'update:checked', value: boolean): void
 }>()
 
-const checked = useVModel(props, 'checked', emit)
+const { checked } = useVModels(props, emit)
 
 function toggleChecked(): void {
   checked.value = !checked.value

@@ -1,13 +1,13 @@
 <script setup lang="ts">
-import { useVModel } from '@vueuse/core'
+import { useVModels } from '@vueuse/core'
 import { PropType } from 'vue'
-import { TodoMode } from '~/@types'
+import type { TodoMode } from '~/@types'
 
 const props = defineProps({
   mode: { type: String as PropType<TodoMode>, default: 'ALL' },
 })
 const emit = defineEmits(['update:mode'])
-const mode = useVModel(props, 'mode', emit)
+const { mode } = useVModels(props, emit)
 
 const modeList: TodoMode[] = ['ALL', 'UNDONE', 'DONE']
 </script>

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { PropType } from 'vue'
 import type { Todo } from '~/@types'
-import { AppButton, AppCheckbox, AppInput } from '~/components/App'
+import { AppCheckbox, AppInput } from '~/components/App'
 
 const props = defineProps({
   todo: {
