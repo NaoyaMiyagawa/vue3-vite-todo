@@ -1,12 +1,10 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { computed } from 'vue'
 import { useTodoStore } from '~/stores'
 import { TodoModeTab, TodoItem, TodoAddForm } from '~/components/Todo'
-import { TodoMode } from '~/@types'
-
-const mode = ref<TodoMode>('UNDONE')
 
 const store = useTodoStore()
+const mode = computed(() => store.todoMode)
 const todoList = computed(() => store.getTodoList(mode))
 </script>
 
@@ -14,7 +12,7 @@ const todoList = computed(() => store.getTodoList(mode))
   <div class="flex flex-col items-center">
     <h1>Task</h1>
 
-    <TodoModeTab v-model:mode="mode" />
+    <TodoModeTab :mode="mode" @update:mode="store.updateTodoMode" />
 
     <div class="flex flex-col p-5 w-100 items-start justify-end">
       <transition-group name="list-complete">

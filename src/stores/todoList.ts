@@ -6,12 +6,14 @@ import { toast } from '~/composables'
 
 type TodoStore = {
   todoList: Ref<Todo[]>
+  todoMode: Ref<TodoMode>
 }
 
 export const useTodoStore = defineStore('main', {
   state: () => {
     return {
       todoList: useLocalStorage('todoList', []),
+      todoMode: useLocalStorage('todoMode', 'ALL'),
     } as TodoStore
   },
 
@@ -58,6 +60,12 @@ export const useTodoStore = defineStore('main', {
       const index = this.todoList.findIndex((t) => t.id === id)
       this.todoList.splice(index, 1)
       toast.info('Todo deleted')
+    },
+    /**
+     * Update TodoMode
+     */
+    updateTodoMode(mode: TodoMode) {
+      this.todoMode = mode
     },
   },
 })

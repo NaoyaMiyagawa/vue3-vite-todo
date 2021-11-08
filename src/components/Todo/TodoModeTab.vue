@@ -6,7 +6,9 @@ import type { TodoMode } from '~/@types'
 const props = defineProps({
   mode: { type: String as PropType<TodoMode>, default: 'ALL' },
 })
-const emit = defineEmits(['update:mode'])
+const emit = defineEmits<{
+  (event: 'update:mode', value: TodoMode): void
+}>()
 const { mode } = useVModels(props, emit)
 
 const modeList: TodoMode[] = ['ALL', 'UNDONE', 'DONE']
