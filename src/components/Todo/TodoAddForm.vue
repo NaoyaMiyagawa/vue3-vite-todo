@@ -3,14 +3,16 @@ import { ref } from 'vue'
 import { AppButtonCircle, AppInput } from '~/components/App'
 import { useTodoStore } from '~/stores'
 
-const props = defineProps()
+const props = defineProps({
+  defaultIsDone: { type: Boolean, default: false },
+})
 const emit = defineEmits([])
 
 const store = useTodoStore()
 const newTodoTitle = ref<string>('')
 
 function addTodo() {
-  store.addTodo(newTodoTitle.value)
+  store.addTodo(newTodoTitle.value, props.defaultIsDone)
   newTodoTitle.value = ''
 }
 </script>

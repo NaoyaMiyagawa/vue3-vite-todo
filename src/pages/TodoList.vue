@@ -5,6 +5,7 @@ import { TodoModeTab, TodoItem, TodoAddForm } from '~/components/Todo'
 
 const store = useTodoStore()
 const mode = computed(() => store.todoMode)
+const defaultIsDone = computed(() => mode.value === 'DONE')
 const todoList = computed(() => store.getTodoList(mode))
 </script>
 
@@ -27,7 +28,7 @@ const todoList = computed(() => store.getTodoList(mode))
           </template>
         </transition-group>
 
-        <TodoAddForm />
+        <TodoAddForm :defaultIsDone="defaultIsDone" />
       </div>
     </div>
   </div>
