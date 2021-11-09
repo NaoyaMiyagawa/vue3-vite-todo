@@ -17,7 +17,12 @@ const todoList = computed(() => store.getTodoList(mode))
     <div class="flex flex-col p-5 w-100 items-start justify-end">
       <transition-group name="list-complete">
         <template v-for="todo in todoList" :key="todo.id">
-          <TodoItem class="list-complete-item" :todo="todo" @update="store.updateTodo" @deleteTodo="store.deleteTodo" />
+          <TodoItem
+            class="list-complete-item"
+            :todo="todo"
+            @update:todo="store.updateTodo"
+            @delete:todo="store.deleteTodo"
+          />
         </template>
       </transition-group>
 

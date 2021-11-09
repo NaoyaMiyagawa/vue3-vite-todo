@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { useVModels } from '@vueuse/core'
 import { PropType } from 'vue'
 import type { Todo } from '~/@types'
 import { AppCheckbox, AppInput } from '~/components/App'
@@ -10,18 +11,20 @@ const props = defineProps({
   },
 })
 const emit = defineEmits<{
-  (event: 'update', todo: Todo): void
-  (event: 'deleteTodo', todoId: number): void
+  (event: 'update:todo', todo: Todo): void
+  (event: 'delete:todo', todoId: number): void
 }>()
 
+const { todo } = useVModels(props, emit)
+
 function onUpdateTitle(newTitle: string): void {
-  emit('update', { ...props.todo, title: newTitle })
+  todo.value.title = newTitle
 }
 function onUpdateChecked(newChecked: boolean): void {
-  emit('update', { ...props.todo, isDone: newChecked })
+  todo.value.isDone = newChecked
 }
 function confirmDelete(todoId: number): void {
-  confirm('Are you sure delete?') && emit('deleteTodo', todoId)
+  confirm('Are you sure delete?') && emit('delete:todo', todoId)
 }
 </script>
 
