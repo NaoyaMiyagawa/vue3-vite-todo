@@ -30,6 +30,8 @@ export const useTodoStore = defineStore('main', {
     },
 
     getNextId(): number {
+      if (this.todoList.length === 0) return 1
+
       const ids = this.todoList.map((todo) => todo.id)
       return Math.max(...ids) + 1
     },
@@ -39,10 +41,10 @@ export const useTodoStore = defineStore('main', {
     /**
      * Add new todo
      */
-    addTodo(title: string): void {
+    addTodo(title: string, isDone: boolean = false): void {
       if (title.length === 0) return
 
-      const newTodo: Todo = { id: this.getNextId, title, isDone: false }
+      const newTodo: Todo = { id: this.getNextId, title, isDone }
       this.todoList.push(newTodo)
       toast.success('Todo added')
     },
