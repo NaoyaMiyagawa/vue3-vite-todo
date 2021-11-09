@@ -9,24 +9,26 @@ const todoList = computed(() => store.getTodoList(mode))
 </script>
 
 <template>
-  <div class="flex flex-col items-center">
-    <h1>Task</h1>
+  <div class="flex justify-center p-4">
+    <div class="flex flex-col items-center w-[80%] bg-white pt-6 pb-14 rounded-2xl">
+      <h1 class="px-4 py-2 border-b-1 border-gray-300">Task</h1>
 
-    <TodoModeTab :mode="mode" @update:mode="store.updateTodoMode" />
+      <TodoModeTab :mode="mode" @update:mode="store.updateTodoMode" />
 
-    <div class="flex flex-col p-5 w-100 items-start justify-end">
-      <transition-group name="list-complete">
-        <template v-for="todo in todoList" :key="todo.id">
-          <TodoItem
-            class="list-complete-item"
-            :todo="todo"
-            @update:todo="store.updateTodo"
-            @delete:todo="store.deleteTodo"
-          />
-        </template>
-      </transition-group>
+      <div class="flex flex-col p-4 w-100 items-start justify-end">
+        <transition-group name="list-complete">
+          <template v-for="todo in todoList" :key="todo.id">
+            <TodoItem
+              class="list-complete-item"
+              :todo="todo"
+              @update:todo="store.updateTodo"
+              @delete:todo="store.deleteTodo"
+            />
+          </template>
+        </transition-group>
 
-      <TodoAddForm />
+        <TodoAddForm />
+      </div>
     </div>
   </div>
 </template>

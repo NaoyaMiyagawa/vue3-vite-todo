@@ -8,7 +8,8 @@ import TodoList from '~/pages/TodoList.vue'
 
 <style lang="scss">
 #app {
-  margin-top: 60px;
+  @apply box-border h-[100vh] bg-blue-50;
+
   color: #2c3e50;
   font-family: Avenir, Helvetica, Arial, sans-serif;
   text-align: center;
