@@ -25,9 +25,11 @@ function confirmDelete(todoId: number): void {
 }
 function onEnter(event: Event): void {
   ;(event.target as HTMLInputElement).blur()
-  if (todo.value.title === '') {
-    confirmDelete(todo.value.id)
-  }
+}
+function onBlur(): void {
+  if (todo.value.title) return
+
+  confirmDelete(todo.value.id)
 }
 </script>
 
@@ -40,6 +42,7 @@ function onEnter(event: Event): void {
       @update:value="onUpdateTitle"
       :class="{ 'text-gray-400': todo.isDone }"
       @keyup.enter="onEnter"
+      @blur="onBlur"
     />
   </div>
 </template>

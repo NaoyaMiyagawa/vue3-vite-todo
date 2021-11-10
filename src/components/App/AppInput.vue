@@ -7,6 +7,7 @@ const props = defineProps({
 })
 const emit = defineEmits<{
   (event: 'update:value', value: string): void
+  (event: 'blur', $event: Event): void
 }>()
 
 const { value } = useVModels(props, emit)
@@ -22,7 +23,13 @@ function onInput($event: Event) {
       {{ label }}
     </span>
 
-    <input type="text" :value="value" class="w-full border-b border-gray-300 p-1 px-2" @input="onInput" />
+    <input
+      type="text"
+      :value="value"
+      class="w-full border-b border-gray-300 p-1 px-2"
+      @input="onInput"
+      @blur="$emit('blur', $event)"
+    />
   </div>
 </template>
 
