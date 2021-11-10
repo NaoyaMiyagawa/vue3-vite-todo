@@ -23,6 +23,12 @@ function onUpdateChecked(newChecked: boolean): void {
 function confirmDelete(todoId: number): void {
   confirm('Are you sure delete?') && emit('delete:todo', todoId)
 }
+function onEnter(event: Event): void {
+  ;(event.target as HTMLInputElement).blur()
+  if (todo.value.title === '') {
+    confirmDelete(todo.value.id)
+  }
+}
 </script>
 
 <template>
@@ -33,7 +39,7 @@ function confirmDelete(todoId: number): void {
       :value="todo.title"
       @update:value="onUpdateTitle"
       :class="{ 'text-gray-400': todo.isDone }"
-      @keyup.enter="$event.target.blur()"
+      @keyup.enter="onEnter"
     />
   </div>
 </template>
