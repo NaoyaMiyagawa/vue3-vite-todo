@@ -9,10 +9,18 @@ type TodoStore = {
   todoMode: Ref<TodoMode>
 }
 
-export const useTodoStore = defineStore('main', {
+const defaultTodoList: Todo[] = [
+  { id: 1, title: 'Open Todo App', isDone: true },
+  { id: 2, title: 'Add Todo', isDone: false },
+  { id: 3, title: 'Mark Todo Done', isDone: false },
+  { id: 4, title: 'Edit Todo', isDone: false },
+  { id: 5, title: 'Delete Todo', isDone: false },
+]
+
+export const useTodoStore = defineStore('todo', {
   state: () => {
     return {
-      todoList: useLocalStorage('todoList', []),
+      todoList: useLocalStorage('todoList', defaultTodoList),
       todoMode: useLocalStorage('todoMode', 'ALL'),
     } as TodoStore
   },
