@@ -5,10 +5,7 @@ import type { Todo } from '~/@types'
 import { AppCheckbox, AppInput } from '~/components/App'
 
 const props = defineProps({
-  todo: {
-    type: Object as PropType<Todo>,
-    required: true,
-  },
+  todo: { type: Object as PropType<Todo>, required: true },
 })
 const emit = defineEmits<{
   (event: 'update:todo', todo: Todo): void

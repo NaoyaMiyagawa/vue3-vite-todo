@@ -12,11 +12,11 @@ const todoList = computed(() => store.getTodoList(mode))
 <template>
   <div class="flex justify-center p-4">
     <div class="flex flex-col items-center w-[95%] bg-white pt-6 pb-14 rounded-2xl">
-      <h1 class="px-4">Task</h1>
+      <h1>Task</h1>
 
       <TodoModeTab :mode="mode" @update:mode="store.updateTodoMode" />
 
-      <div class="flex flex-col p-4 items-start justify-end">
+      <div class="flex flex-col items-start justify-end">
         <transition-group name="list-complete">
           <template v-for="todo in todoList" :key="todo.id">
             <TodoItem
@@ -36,7 +36,7 @@ const todoList = computed(() => store.getTodoList(mode))
 
 <style lang="scss" scoped>
 .list-complete-item {
-  transition: all 0.5s ease;
+  transition: all 0.2s ease;
   margin-right: 10px;
 }
 
