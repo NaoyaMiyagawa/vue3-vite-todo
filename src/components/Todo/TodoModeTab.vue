@@ -18,7 +18,7 @@ const modeList: TodoMode[] = ['ALL', 'UNDONE', 'DONE']
   <div class="flex gap-2 items-start flex-row p-4">
     <template v-for="modeItem in modeList" :key="modeItem">
       <div
-        class="p-1 pt-2 px-6 border-b-1 w-30"
+        class="p-1 pt-2 px-4 border-b-1"
         :class="{ 'border-b-2 border-blue-400 bg-blue-100 rounded-t-2xl': mode === modeItem }"
         @click="mode = modeItem"
       >
