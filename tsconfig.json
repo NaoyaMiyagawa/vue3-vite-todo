@@ -4,7 +4,8 @@
     "useDefineForClassFields": true,
     "module": "esnext",
     "moduleResolution": "node",
-    "isolatedModules": true,
+    // @NOTE: to avoid build errors, need to set this to false
+    "isolatedModules": false,
     "strict": true,
     "jsx": "preserve",
     "sourceMap": true,
@@ -20,6 +21,5 @@
       "~/*": ["src/*"]
     }
   },
-  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"],
-  "exclude": ["node_modules"]
+  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"]
 }
