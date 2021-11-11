@@ -26,17 +26,26 @@ export const useTodoStore = defineStore('todo', {
   },
 
   getters: {
-    getTodoList: (state) => {
-      return (mode: MaybeRef<TodoMode>) => {
-        mode = unref(mode)
-        return state.todoList.filter((todo: Todo) => {
+    /** Get todoList filtered by specified mode */
+    getTodoList(state) {
+      return (mode?: MaybeRef<TodoMode>): Todo[] => {
+        mode = mode ? unref(mode) : state.todoMode
+
+        return state.todoList.filter((todo: Todo): boolean => {
           if (mode === 'ALL') return true
           if (mode === 'DONE' && todo.isDone) return true
           if (mode === 'UNDONE' && !todo.isDone) return true
+          return false
         })
       }
     },
 
+    /** Default isDone value used when adding todo */
+    defaultIsDone(state): boolean {
+      return state.todoMode === 'DONE'
+    },
+
+    /** Get next id for adding todo */
     getNextId(): number {
       if (this.todoList.length === 0) return 1
 
@@ -49,10 +58,14 @@ export const useTodoStore = defineStore('todo', {
     /**
      * Add new todo
      */
-    addTodo(title: string, isDone: boolean = false): void {
+    addTodo(title: string, isDone?: boolean): void {
       if (title.length === 0) return
 
-      const newTodo: Todo = { id: this.getNextId, title, isDone }
+      const newTodo: Todo = {
+        id: this.getNextId,
+        title,
+        isDone: isDone || this.defaultIsDone,
+      }
       this.todoList.push(newTodo)
       toast.success('Todo added')
     },

@@ -4,9 +4,7 @@ import { useTodoStore } from '~/stores'
 import { TodoModeTab, TodoItem, TodoAddForm } from '~/components/Todo'
 
 const store = useTodoStore()
-const mode = computed(() => store.todoMode)
-const defaultIsDone = computed(() => mode.value === 'DONE')
-const todoList = computed(() => store.getTodoList(mode))
+const todoList = computed(() => store.getTodoList())
 </script>
 
 <template>
@@ -14,7 +12,7 @@ const todoList = computed(() => store.getTodoList(mode))
     <div class="flex flex-col items-center w-[95%] bg-white pt-6 pb-14 rounded-2xl">
       <h1>Task</h1>
 
-      <TodoModeTab :mode="mode" @update:mode="store.updateTodoMode" />
+      <TodoModeTab :mode="store.todoMode" @update:mode="store.updateTodoMode" />
 
       <div class="flex flex-col items-start justify-end">
         <transition-group name="list-complete">
@@ -28,7 +26,7 @@ const todoList = computed(() => store.getTodoList(mode))
           </template>
         </transition-group>
 
-        <TodoAddForm :defaultIsDone="defaultIsDone" />
+        <TodoAddForm />
       </div>
     </div>
   </div>
