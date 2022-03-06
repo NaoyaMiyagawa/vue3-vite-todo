@@ -1,41 +1,41 @@
 lockfileVersion: 5.3
 
 specifiers:
-  '@headlessui/vue': ^1.4.1
-  '@heroicons/vue': ^1.0.5
-  '@types/node': ^16.11.6
-  '@typescript-eslint/eslint-plugin': ^5.2.0
-  '@typescript-eslint/parser': ^5.2.0
-  '@vitejs/plugin-vue': ^1.9.3
+  '@headlessui/vue': ^1.5.0
+  '@heroicons/vue': ^1.0.6
+  '@types/node': ^16.11.26
+  '@typescript-eslint/eslint-plugin': ^5.13.0
+  '@typescript-eslint/parser': ^5.13.0
+  '@vitejs/plugin-vue': ^1.10.2
   '@vue/eslint-config-prettier': ^6.0.0
-  '@vue/eslint-config-typescript': ^9.0.0
-  '@vueuse/core': ^6.8.0
-  eslint: ^8.1.0
+  '@vue/eslint-config-typescript': ^9.1.0
+  '@vueuse/core': ^6.9.2
+  eslint: ^8.10.0
   eslint-plugin-prettier: ^4.0.0
-  eslint-plugin-vue: ^8.0.2
+  eslint-plugin-vue: ^8.5.0
   husky: ^7.0.4
   lint-staged: ^11.2.6
   path: ^0.12.7
-  pinia: ^2.0.2
-  postcss-html: ^1.2.0
-  prettier: ^2.4.1
-  sass: ^1.43.4
-  stylelint: ^14.0.1
+  pinia: ^2.0.11
+  postcss-html: ^1.3.0
+  prettier: ^2.5.1
+  sass: ^1.49.9
+  stylelint: ^14.5.3
   stylelint-config-rational-order: ^0.1.2
   stylelint-config-recommended: ^6.0.0
-  stylelint-config-recommended-vue: ^1.0.0
+  stylelint-config-recommended-vue: ^1.3.0
   stylelint-config-standard: ^23.0.0
   stylelint-order: ^5.0.0
   stylelint-processor-html: ^1.0.0
-  stylelint-scss: ^4.0.0
-  typescript: ^4.4.3
-  vite: ^2.6.4
-  vite-plugin-windicss: ^1.4.12
+  stylelint-scss: ^4.1.0
+  typescript: ^4.6.2
+  vite: ^2.8.6
+  vite-plugin-windicss: ^1.8.3
   vitest: ^0.0.113
-  vue: ^3.2.16
+  vue: ^3.2.31
   vue-toastification: ^2.0.0-rc.5
   vue-tsc: ^0.28.10
-  windicss: ^3.2.0
+  windicss: ^3.5.1
 
 dependencies:
   '@headlessui/vue': 1.5.0_vue@3.2.31
